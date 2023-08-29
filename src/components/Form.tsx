@@ -6,9 +6,7 @@ const schema = z.object({
   description: z
     .string()
     .min(3, { message: "Description should be at least 3 characters." }),
-  amount: z
-    .number({ invalid_type_error: "Amount is required." })
-    .min(1, { message: "Amount is required." }),
+  amount: z.number({ invalid_type_error: "Amount is required." }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -44,7 +42,7 @@ const Form = () => {
           Amount
         </label>
         <input
-          {...(register("amount"), { valueAsNumber: true })}
+          {...register("amount")}
           id="amount"
           type="number"
           className="form-control"
